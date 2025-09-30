@@ -1,0 +1,230 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+/* You can add global styles to this file, and also import other style files */
+* {
+  /* "Do Hyeon", */
+  font-family: "Cairo", Arial, Helvetica, sans-serif;
+}
+:root {
+  --app-bg: #F7F8F9;        /* page background (very light gray) */
+  --app-surface-bg: #e4e5e7;/* cards/sections */
+  --app-fg: #111827;        /* text (near-black) */
+  --app-calendar-bg: var(--app-bg);
+  --p-card-background: var(--app-surface-bg) !important;
+  --app-surface-bg-hover:#b8b9ba;
+  --logo-filter: invert(1);
+}
+.app-dark {
+  --app-bg: #1D2125;
+  --app-surface-bg:#2C333A;
+  --app-fg: white;
+  --app-calendar-bg:#131314;
+  --p-card-background: var(--app-surface-bg) !important;
+  --app-surface-bg-hover:#121518;
+  --logo-filter: invert(0);
+  /* --app-bg: #363637;
+  --app-surface-bg:#404041;
+  --app-fg: white; */
+}
+
+body{
+  background: var(--app-bg);
+  color: var(--app-fg);
+  height: 100%;
+  /* overflow: hidden; */
+}
+.text-light{
+  color: var(--app-fg) !important;
+}
+.textPrimary{
+  color: #6D53F7;
+}
+.myForm{
+  position: relative;
+  padding: 20px 20px;
+  border: 2px solid var(--app-bg);
+  border-radius: 10px;
+}
+.myForm2{
+  position: relative;
+  background-color: var(--app-bg);
+  border: 1px solid gray;
+  /* padding: 20px 20px; */
+  border-radius: 10px;
+}
+.label-form-2{
+  position: absolute;
+  top: -12px;
+  background-color: transparent;
+  width: fit-content;
+}
+.label-form{
+  position: absolute;
+  top: -12px;
+  background-color: var(--app-surface-bg);
+  width: fit-content;
+}
+.myIcon{
+  padding: 7px;
+  font-size: 18px;
+  border-radius: 50%;
+}
+.successIcon{
+  color: #19DE88;
+  background-color: rgba(25, 222, 137, 0.2);
+}
+.failIcon{
+  color: #8F1E20;
+  background-color: rgba(143, 30, 32, 0.2);
+}
+.starIcon{
+  color: #F2A956;
+  background-color: rgba(242, 169, 86, 0.2);
+}
+
+/* SCROLLBAR */
+/* Works in Chrome, Safari, Edge (WebKit-based) */
+::-webkit-scrollbar {
+  width: 120px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #181818;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;              /* "auto" or "thin" */
+  scrollbar-color: #181818 var(--app-surface-bg);      /* thumb color / track color */
+}
+
+/* Optional: Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  font-size: var(--app-font-size, 15px);
+}
+
+.item-container-form{
+  background-color: var(--app-surface-bg);
+  padding: 8px 20px;
+  border-radius: 11px;
+}
+.shepherd-element {
+  border-radius: 8px;
+  width: 90%;
+  z-index: 999999999999999 !important;
+  position: relative; /* Ensure it's positioned if it wasn't already */
+}
+.shepherd-header{
+  background-color: var(--app-surface-bg) !important;
+}
+.shepherd-title{
+  color: var(--app-fg) !important;
+}
+.shepherd-text{
+  background-color: var(--app-surface-bg) !important;
+  color: var(--app-fg);
+}
+.shepherd-footer{
+  background-color: var(--app-surface-bg) !important;
+  color: var(--app-fg);
+  padding: 10px;
+}
+.infoButton{
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+}
+.shepherd-arrow:before{
+  background-color: var(--p-primary-color);
+}
+.shepherd-element.shepherd-has-title[data-popper-placement^=bottom] > .shepherd-arrow:before{
+  background-color: var(--p-primary-color);
+}
+.shepherd-modal-overlay-container.shepherd-modal-is-visible{
+  z-index: 999999;
+}
+.headerTitle{
+  position: relative;
+}
+.headerTitle::before{
+  position: absolute;
+  left: -10px;
+  top: 0;
+  content: "";
+  height: 100%;
+  border-left: 4px solid var(--p-primary-color);
+  border-radius: 8px;
+  z-index: 9992;
+}
+.myBtn{
+  background-color: var(--p-primary-color);
+  color: var(--app-fg);
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 15px;
+}
+.myBtn:hover{
+  background-color: #2c7dc3;
+}
+
+/* Aliases (optional, just for readability) */
+:root {
+  --color-primary: var(--p-primary-color);
+  --color-primary-hover: var(--p-primary-hover-color);
+  --color-primary-active: var(--p-primary-active-color);
+  --color-primary-contrast: var(--p-primary-contrast-color);
+
+  --color-secondary: var(--p-secondary-color);
+  --color-secondary-hover: var(--p-secondary-hover-color);
+  --color-secondary-active: var(--p-secondary-active-color);
+  --color-secondary-contrast: var(--p-secondary-contrast-color, #000);
+
+  --color-highlight-bg: var(--p-highlight-background);
+  --color-highlight-fg: var(--p-highlight-color);
+}
+
+/* Text + BG utilities (replace text-light, etc.) */
+.text-primary     { color: var(--color-primary) !important; }
+.text-secondary   { color: var(--color-secondary) !important; }
+.bg-primary       { background: var(--color-primary) !important; color: var(--color-primary-contrast) !important; }
+.bg-secondary     { background: var(--color-secondary) !important; color: var(--color-secondary-contrast) !important; }
+.bg-highlight     { background: var(--color-highlight-bg) !important; color: var(--color-highlight-fg) !important; }
+
+/* Buttons (hover/active use your preset’s tokens) */
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  border: 0;
+}
+.btn-primary:hover  { background: var(--color-primary-hover);  }
+.btn-primary:active { background: var(--color-primary-active); }
+
+.btn-secondary {
+  background: var(--color-secondary);
+  color: var(--color-secondary-contrast);
+  border: 0;
+}
+.btn-secondary:hover  { background: var(--color-secondary-hover);  }
+.btn-secondary:active { background: var(--color-secondary-active); }
+
+.resetBtn{
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
