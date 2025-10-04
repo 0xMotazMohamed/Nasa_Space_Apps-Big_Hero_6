@@ -1,0 +1,35 @@
+# Data files
+*.csv
+*.npy
+data_cache/
+models/*.pth
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment
+.env
+.venv
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Keep important files
+!README.md
+!CHANGES.md
+!requirements.txt
