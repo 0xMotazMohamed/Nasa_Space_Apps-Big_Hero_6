@@ -1,6 +1,6 @@
-# NO2 Forecasting Model Pipeline
+# Atmospheric Pollutant Forecasting Model Pipeline
 
-This repository contains a complete pipeline for training and forecasting NO2 concentrations using a U-Net based deep learning model.
+This repository contains a complete pipeline for training and forecasting atmospheric pollutant concentrations (NO2, O3, HCHO) using a U-Net based deep learning model.
 
 ## 🔗 Related Resources
 
@@ -18,7 +18,7 @@ The TEMPO NO2 satellite data used for training this model is available on Kaggle
 - **`model.py`**: Complete model pipeline with training, fine-tuning, and forecasting
 - **`example.py`**: Example usage scripts
 - **`notebook.ipynb`**: Original research and development notebook
-- **`NO2.csv`**: Input data file (your satellite data)
+- **`NO2.csv`**: Input data file (atmospheric pollutant satellite data: NO2, O3, HCHO)
 
 ## Features
 
@@ -48,16 +48,16 @@ pip install pandas numpy scikit-learn opencv-python matplotlib tqdm
 ### 2. Prepare Your Data
 Ensure your CSV file has the format:
 - First column: `datetime` (date timestamps)
-- Remaining columns: pixel values (one column per pixel)
+- Remaining columns: pixel values for atmospheric pollutants (NO2, O3, HCHO) - one column per pixel
 
 ### 3. Run Complete Pipeline
 ```python
 from model import ModelPipeline
 from data import DataHandler
 
-# Load and preprocess data
+# Load and preprocess atmospheric data (NO2, O3, HCHO)
 data_handler = DataHandler()
-data_handler.load_csv("NO2.csv")
+data_handler.load_csv("NO2.csv")  # Contains multi-pollutant data
 
 # Initialize pipeline
 pipeline = ModelPipeline(data_handler=data_handler)
@@ -207,11 +207,11 @@ This machine learning pipeline was developed as part of the NASA Space Apps Chal
 - Performance comparisons and validation results
 - Visualization and interpretation of atmospheric data patterns
 
-**📊 Dataset**: [TEMPO NO2 Data](https://www.kaggle.com/datasets/moatazmohamed8804/tempo-no2-data)
+**📊 Dataset**: [TEMPO Atmospheric Data](https://www.kaggle.com/datasets/moatazmohamed8804/tempo-no2-data)
 - High-resolution satellite observations from TEMPO instrument
-- NO2 concentration measurements across North America
-- Daily temporal resolution with spatial coverage
-- Preprocessed and ready for machine learning applications
+- Multi-pollutant measurements: NO2, O3, and HCHO concentrations
+- Coverage across North America with daily temporal resolution
+- Preprocessed atmospheric data ready for machine learning applications
 
 ## 🏆 NASA Space Apps Challenge
 
