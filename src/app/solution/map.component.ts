@@ -22379,11 +22379,11 @@ export class MapComponent implements OnInit, AfterViewInit {
         const isPolygon = event.layerType === 'polygon';
 
         if (isPolygon) {
-          this.mapService.getPolygonData(coordinateArray).subscribe({
-            next: (res: PolygonResponse) => this.createPopup(layer, res),
-            error: () => this.createSimplePopup(layer, 'Error fetching polygon data')
-          });
-          // this.createPopup(layer, this.mockPolygonResponse); // Uncomment for testing with mock data
+          // this.mapService.getPolygonData(coordinateArray).subscribe({
+          //   next: (res: PolygonResponse) => this.createPopup(layer, res),
+          //   error: () => this.createSimplePopup(layer, 'Error fetching polygon data')
+          // });
+          this.createPopup(layer, this.mockPolygonResponse); // Uncomment for testing with mock data
         }
       }
 
@@ -22392,17 +22392,17 @@ export class MapComponent implements OnInit, AfterViewInit {
       if (isMarker) {
         const lat = layer.getLatLng().lat.toFixed(4);
         const lon = layer.getLatLng().lng.toFixed(4);
-        this.mapService.getPoints(lon, lat).subscribe({
-          next: (res: PointsResponse) => {
-            if (Object.keys(res).length > 0) {
-              this.createPopup(layer, res);
-            } else {
-              this.createSimplePopup(layer, 'Location out of supported bounds');
-            }
-          },
-          error: () => this.createSimplePopup(layer, 'Error fetching point data')
-        });
-        // this.createPopup(layer, this.mockPointsResponse); // Uncomment for testing with mock data
+        // this.mapService.getPoints(lon, lat).subscribe({
+        //   next: (res: PointsResponse) => {
+        //     if (Object.keys(res).length > 0) {
+        //       this.createPopup(layer, res);
+        //     } else {
+        //       this.createSimplePopup(layer, 'Location out of supported bounds');
+        //     }
+        //   },
+        //   error: () => this.createSimplePopup(layer, 'Error fetching point data')
+        // });
+        this.createPopup(layer, this.mockPointsResponse); // Uncomment for testing with mock data
       }
     });
   }
@@ -22473,8 +22473,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     }
 
     this.map?.setView([lat, lng], 12);
-    this.mapService.getCity(cityId).subscribe({
-      next: (res: CityResponse) => {
+    // this.mapService.getCity(cityId).subscribe({
+    //   next: (res: CityResponse) => {
         const marker = L.marker([lat, lng], {
           icon: L.divIcon({
             className: 'city-marker',
@@ -22483,21 +22483,21 @@ export class MapComponent implements OnInit, AfterViewInit {
             iconAnchor: [12.5, 12.5]
           })
         }).addTo(this.map!);
-        this.createPopup(marker, res);
-      },
-      error: () => {
-        const marker = L.marker([lat, lng], {
-          icon: L.divIcon({
-            className: 'city-marker',
-            html: '<div style="background-color: var(--p-primary-color); width: 25px; height: 25px; border-radius: 50%; border: 2px solid white;"></div>',
-            iconSize: [25, 25],
-            iconAnchor: [12.5, 12.5]
-          })
-        }).addTo(this.map!);
-        this.createSimplePopup(marker, 'Error fetching city data');
-      }
-    });
-    // this.createPopup(marker,this.mockCityResponse)
+    //     this.createPopup(marker, res);
+    //   },
+    //   error: () => {
+    //     const marker = L.marker([lat, lng], {
+    //       icon: L.divIcon({
+    //         className: 'city-marker',
+    //         html: '<div style="background-color: var(--p-primary-color); width: 25px; height: 25px; border-radius: 50%; border: 2px solid white;"></div>',
+    //         iconSize: [25, 25],
+    //         iconAnchor: [12.5, 12.5]
+    //       })
+    //     }).addTo(this.map!);
+    //     this.createSimplePopup(marker, 'Error fetching city data');
+    //   }
+    // });
+    this.createPopup(marker,this.mockCityResponse)
 
   }
 
