@@ -1,0 +1,53 @@
+.bg-hero {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.ibb.co/R4SjrVMM/team-hero.jpg');
+  height: fit-content;
+  position: relative; /* Ensures content stays above the overlay */
+}
+
+.pt-10 {
+  padding-top: 8rem;
+}
+
+.fs-10 {
+  font-size: 7rem;
+}
+
+:host ::ng-deep .p-card{
+  border: 1px solid var(--p-primary-color);
+  transition: all 1s;
+}
+:host ::ng-deep .p-card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0px 0px 20px 3px var(--p-primary-color);
+  -webkit-box-shadow: 0px 0px 20px 3px var(--p-primary-color);
+  -moz-box-shadow: 0px 0px 20px 3px var(--p-primary-color);
+}
+:host ::ng-deep .p-card .cardImg{
+  border-radius: 12px !important;
+}
+.member-img{
+  height: 300px;
+  overflow: hidden;
+}
+.animate-floating{
+  animation: animate-floating 3s linear infinite;
+}
+@keyframes animate-floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@media (max-width: 660px) {
+  .fs-10{
+    font-size: 5rem;
+  }
+}

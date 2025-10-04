@@ -1,0 +1,66 @@
+canvas {
+  width: 100vw !important;
+  height: 100vh !important;
+  display: block;
+  z-index: 9999;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+:host ::ng-deep .about-btn {
+  position: absolute;
+  z-index: 10001; /* Higher than overlay to ensure button is clickable */
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.overlay {
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10000; /* Above canvas but below button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay-content {
+  /* max-width: 700px; */
+  padding: 20px;
+  color: white; /* Adjust text color for readability */
+  font-size: 16px;
+  max-height: 448px !important;
+}
+
+.text-gradient{
+  font-weight: 900;
+  font-size: 50px;
+  background: linear-gradient(to right, #8257D7, #3EBBF9);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media (max-width: 1199.5px) {
+  .aeraLogo{
+    display: none;
+  }
+}
+@media (max-width:959.5px) {
+  :host ::ng-deep .cancel-btn{
+    left : calc(100% - 30px) !important;
+    top: 100px !important;
+    z-index: 999999;
+  }
+}
+@media (max-width: 350px) {
+  .text-gradient{
+    font-size: 40px;
+  }
+}

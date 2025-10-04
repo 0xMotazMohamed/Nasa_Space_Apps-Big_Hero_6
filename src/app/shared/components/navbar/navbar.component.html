@@ -1,0 +1,40 @@
+<div class="navbar-container container">
+  <div class="navbar-items d-flex justify-content-between align-items-center">
+    <div class="logo">
+      <img routerLink="Home" class="img-fluid cursor-pointer" src="AERA-Logo-w.png" alt="AERA">
+    </div>
+    <div class="navbar-links">
+      <div class="navbar-links-container d-flex justify-content-between gap-5">
+        <a class="navLink" routerLink="/modules/home" routerLinkActive="active">Home</a>
+        <a class="navLink" routerLink="/map" routerLinkActive="active">Solution</a>
+        <a class="navLink" href="https://www.google.com">Dashboard</a>
+        <a class="navLink" routerLink="/modules/about" routerLinkActive="active">About</a>
+        <a class="navLink" routerLink="/modules/team" routerLinkActive="active">Team</a>
+      </div>
+      <div class="navbarMobileBtn">
+        <p-button class="navLink" (click)="toggleNavbar()" icon="pi pi-bars" [rounded]="true"></p-button>
+      </div>
+      @if (isNavbarExpanded) {
+        <div class="navbarMobile">
+          <div class="mobile-overlay"></div>
+          <div class="mobile-menu">
+            <p-button
+              class="close-btn"
+              (click)="toggleNavbar()"
+              icon="pi pi-times"
+              [text]="true"
+              [rounded]="true">
+            </p-button>
+            <ul class="mobile-links">
+              <li><a class="navLink" routerLink="/modules/home" routerLinkActive="active" (click)="toggleNavbar()">Home</a></li>
+              <li><a class="navLink" routerLink="/map" routerLinkActive="active" (click)="toggleNavbar()">Solution</a></li>
+              <li><a class="navLink" href="https://www.google.com" (click)="toggleNavbar()">Dashboard</a></li>
+              <li><a class="navLink" routerLink="/modules/about" routerLinkActive="active" (click)="toggleNavbar()">About</a></li>
+              <li><a class="navLink" routerLink="/modules/team" routerLinkActive="active" (click)="toggleNavbar()">Team</a></li>
+            </ul>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

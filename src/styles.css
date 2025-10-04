@@ -1,7 +1,11 @@
+
+@import 'primeicons/primeicons.css';
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 /* You can add global styles to this file, and also import other style files */
 * {
@@ -12,6 +16,7 @@ html, body {
   --app-bg: #F7F8F9;        /* page background (very light gray) */
   --app-surface-bg: #e4e5e7;/* cards/sections */
   --app-fg: #111827;        /* text (near-black) */
+  --app-fg-rgb: 17, 24, 39;        /* text (near-black) */
   --app-calendar-bg: var(--app-bg);
   --p-card-background: var(--app-surface-bg) !important;
   --app-surface-bg-hover:#b8b9ba;
@@ -20,7 +25,8 @@ html, body {
 .app-dark {
   --app-bg: #1D2125;
   --app-surface-bg:#2C333A;
-  --app-fg: white;
+  --app-fg: #ffffff;
+  --app-fg-rgb: 255, 255, 255;
   --app-calendar-bg:#131314;
   --p-card-background: var(--app-surface-bg) !important;
   --app-surface-bg-hover:#121518;
@@ -227,4 +233,14 @@ html {
   background-color: transparent;
   border: none;
   outline: none;
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.color-white{
+  color: white;
+}
+.color-gray{
+  color: gray;
 }

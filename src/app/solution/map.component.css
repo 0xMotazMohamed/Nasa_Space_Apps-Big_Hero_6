@@ -1,0 +1,239 @@
+.map-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.map {
+  height: 100%;
+  width: 100%;
+}
+.search-bar {
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  z-index: 1000;
+  padding: 10px;
+  border-radius: 5px;
+  width: 500px !important;
+}
+:host ::ng-deep .search-bar .p-autocomplete{
+  width: 500px !important;
+  /* padding: 5px 20px; */
+}
+/* Apply filter only in dark mode */
+:host-context(.app-dark) ::ng-deep .leaflet-layer,
+:host-context(.app-dark) ::ng-deep .leaflet-control-attribution {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%) !important;
+}
+
+/* Custom styles for polygons */
+.custom-polygon {
+  fill: #3388ff;
+  fill-opacity: 0.3;
+  stroke: #003087;
+  stroke-width: 2;
+  stroke-opacity: 0.9;
+}
+
+/* Custom styles for markers */
+.custom-marker .marker-icon {
+  background-color: #ff4444;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom styles for popup */
+:host ::ng-deep .custom-leaflet-popup .leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  padding: 10px;
+  background-color: var(--app-bg) !important;
+}
+
+/* Optional: Adjust popup styles for dark mode */
+:host-context(.app-dark) .leaflet-container {
+  background: #000
+}
+
+:host-context(.app-dark) .custom-popup h3 {
+  color: #ffffff;
+}
+
+:host-context(.app-dark) .popup-field label {
+  color: #cccccc;
+}
+
+:host-context(.app-dark) .popup-input {
+  background-color: #333333;
+  border-color: #555555;
+  color: #ffffff;
+}
+
+:host-context(.app-dark) .save-btn {
+  background-color: #2566cc;
+}
+
+:host-context(.app-dark) .save-btn:hover {
+  background-color: #1e4d99;
+}
+
+.slider-container {
+  position: absolute;
+  box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.40);
+  -webkit-box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.40);
+  -moz-box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.40);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  background-color: var(--app-bg);
+  border-radius: 6px;
+  top: 95px;
+  left: 130px;
+  z-index: 1000;
+  padding: 15px;
+}
+
+.slider-timestamps {
+  position: absolute;
+  left: 60px; /* Adjust to position the date label to the right of the slider */
+  top: 0;
+  height: 100%;
+  pointer-events: none; /* Prevent the date label from interfering with slider interaction */
+}
+
+.date-label {
+  position: absolute;
+  left: -20px;
+  transform: translateY(-50%); /* Center the label vertically relative to the handle */
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
+  padding: 5px 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Dark mode styles */
+:host-context(.app-dark) .date-label {
+  background: rgba(50, 50, 50, 0.8);
+  color: #ffffff;
+}
+
+.layers-container {
+  background-color: var(--app-bg);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.40);
+  -webkit-box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.40);
+  -moz-box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.40);
+  position: absolute;
+  top: 90px;
+  left: 15px;
+  z-index: 1000;
+  padding: 10px;
+}
+:host ::ng-deep .layer-content{
+  width: 100%;
+}
+:host ::ng-deep .p-selectbutton{
+  flex-direction: column;
+}
+
+.location-button{
+  position: absolute;
+  z-index: 99999;
+  bottom: 10px;
+  left: 10px;
+}
+
+.location-button button{
+  background-color: var(--app-bg);
+}
+:host ::ng-deep .p-selectbutton .p-togglebutton{
+  border-radius: 0 !important ;
+}
+
+:host ::ng-deep .leaflet-touch .leaflet-bar a{
+  background-color: var(--app-bg);
+  color: var(--p-primary-color) !important;
+}
+:host ::ng-deep .p-togglebutton-checked .p-togglebutton-content{
+  background-color: var(--p-primary-color);
+}
+
+:host ::ng-deep .aqiItem{
+  background-color: var(--app-surface-bg);
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+}
+:host ::ng-deep .myIcon{
+  /* background-color: var(--p-primary-800); */
+  background-color: var(--p-primary-color);
+  padding: 10px;
+}
+:host ::ng-deep .general-aqi-details{
+  padding: 20px;
+  background-color: var(--app-surface-bg);
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  border-radius: 6px;
+}
+:host ::ng-deep .general-aqi-value{
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  border-radius: 50%;
+  background-color: var(--app-bg);
+  /* border: 5px solid red; */
+  /* border: 5px solid orange; */
+  border: 5px solid #00cc00;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+:host ::ng-deep .detailed-aqi-value{
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  border-radius: 50%;
+  background-color: var(--app-bg);
+  /* border: 5px solid red; */
+  /* border: 5px solid orange; */
+  border: 2px solid #00cc00;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+:host ::ng-deep .general-aqi-status{
+  background-color: #00cc00;
+  width: fit-content;
+  margin: auto;
+  border-radius: 40px;
+}
+:host ::ng-deep .detailed-aqi-status{
+  background-color: rgba(0, 204, 0, 0.1);
+  border: 1px solid #00cc00;
+  width: fit-content;
+  margin: end;
+  border-radius: 40px;
+}
+:host ::ng-deep .detailed-aqi-status p{
+  color: #00cc00 !important;
+  font-weight: 700;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+:host ::ng-deep .general-aqi-status p{
+  padding: 4px 20px;
+}
+:host ::ng-deep .leaflet-popup-content{
+  width: 700px !important;
+}
+:host ::ng-deep .custom-leaflet-popup{
+  z-index: 999999999;
+}

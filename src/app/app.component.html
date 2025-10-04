@@ -1,1 +1,11 @@
-<app-map></app-map>
+<p-toast
+  position="top-right"
+  [breakpoints]="{'640px': {width: '80%', right: '0'}}"
+  [style]="{'z-index':'999999','margin-top':'65px'}"
+></p-toast>
+<app-loader *ngIf="isLoading$ | async"></app-loader>
+<!-- <app-map></app-map> -->
+@if(!router.url.includes('about')){
+  <app-appearance-settings></app-appearance-settings>
+}
+<router-outlet></router-outlet>

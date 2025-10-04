@@ -1,0 +1,31 @@
+<div class="settings-button">
+  <button pTooltip="Settings" pButton type="button" icon="pi pi-cog" class="p-button-rounded p-button-text"
+          (click)="showSettingsDialog()" title="Settings"></button>
+</div>
+
+<p-dialog header="Settings" [(visible)]="displaySettingsDialog" [modal]="true" [style]="{width: '500px'}">
+  <div class="container px-4 py-4 mb-4">
+    <p class="text-light headerTitle fs-5 px-2 mb-4">
+      <i class="pi pi-palette circle"></i>
+      Appearance
+    </p>
+
+    <div class="mx-0 px-2">
+      <div class="d-flex justify-content-between">
+        <p class="text-light fs-5 mb-0"><i class="pi pi-moon"></i> Dark Mode</p>
+        <p-toggleswitch [(ngModel)]="checkedDarkMode" />
+      </div>
+      <hr class="text-light">
+    </div>
+    <div class="mx-0 px-2">
+      <div class="d-flex justify-content-between">
+        <p class="text-light fs-5 mb-0"><i class="pi pi-palette"></i> Accent Colors</p>
+        <p-colorpicker [(ngModel)]="color" [appendTo]="'body'"/>
+      </div>
+      <hr class="text-light">
+    </div>
+    <div class="row">
+      <p-button styleClass="w-100" label="Save Changes" (onClick)="saveAppearance()"></p-button>
+    </div>
+  </div>
+</p-dialog>

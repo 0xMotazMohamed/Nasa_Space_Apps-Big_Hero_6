@@ -27,11 +27,15 @@
               }
             ],
             "styles": [
-              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/leaflet/dist/leaflet.css",
-              "node_modules/leaflet-draw/dist/leaflet.draw.css"
+              "node_modules/leaflet-draw/dist/leaflet.draw.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -87,11 +91,15 @@
               }
             ],
             "styles": [
-              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/leaflet/dist/leaflet.css",
-              "node_modules/leaflet-draw/dist/leaflet.draw.css"
+              "node_modules/leaflet-draw/dist/leaflet.draw.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           }
         }
       }

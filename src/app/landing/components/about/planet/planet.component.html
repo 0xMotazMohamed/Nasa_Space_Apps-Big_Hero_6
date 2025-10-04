@@ -1,0 +1,40 @@
+<canvas #rendererCanvas></canvas>
+<div class="overlay" *ngIf="isOverlayVisible" [@slideInOut]>
+  <div class="overlay-content row align-items-center">
+    <div class="col-xl-6 aeraLogo">
+      <img class="img-fluid" src="AERA-Logo-w.png" alt="">
+    </div>
+    <div class="col-xl-6 aboutContent">
+      <h1 class="text-gradient">About AERA</h1>
+      <p class="mb-2">
+        <span class="text-primary">AERA</span> (Air Environmental Real-Time Analytics) is a web-based platform designed to make air quality information accessible for both the public and researchers.
+      </p>
+      <p class="mb-2">
+        <span class="text-primary">For the public</span>, AERA helps improve daily life by providing clear and reliable air quality data. <span class="text-primary">Users can:</span>
+      </p>
+      <p class="mb-2">Check real-time levels of key pollutants such as NO₂, HCHO, and O₃.</p>
+      <p class="mb-2">View the <span class="text-primary">Air Quality Index (AQI)</span> at their location using GPS, by searching for a city, or by selecting a point or custom area on an interactive map.</p>
+      <p class="mb-2">Receive forecasts powered by a <span class="text-primary">ConvLSTM</span> deep learning model, with alerts when air quality reaches unsafe levels.</p>
+      <p class="mb-2"><span class="text-primary">For scientists and researchers</span>, AERA offers a research-grade dashboard that combines satellite data from TEMPO with ground validation from Pandora and OpenAQ. <span class="text-primary">Features include:</span></p>
+      <p class="mb-2">Time series analysis and pollutant trends.</p>
+      <p class="mb-2">Nearest ground station comparisons.</p>
+      <p class="mb-2">Multi-visual charts and climate impact insights.</p>
+    </div>
+  </div>
+</div>
+<p-button
+  [icon]="isOverlayVisible ? 'pi pi-chevron-up' : 'pi pi-chevron-down'"
+  [class]="isOverlayVisible && mobileWidth < 960 ? 'd-none' : ''"
+  styleClass="about-btn"
+  [rounded]="true"
+  [outlined]="true"
+  (onClick)="toggleOverlay()"
+></p-button>
+<p-button
+  icon="pi pi-times"
+  [class]="isOverlayVisible && mobileWidth < 960 ? '' : 'd-none'"
+  styleClass="about-btn cancel-btn"
+  [rounded]="true"
+  [outlined]="true"
+  (onClick)="toggleOverlay()"
+></p-button>

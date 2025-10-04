@@ -1,0 +1,31 @@
+<div class="bg-hero pt-10 pb-5">
+  <div class="d-flex flex-column">
+    <div class="text-center">
+      <p-tag value="Our Mission" icon="fa-solid fa-rocket fs-3 me-3 mb-3" styleClass="animate-floating fs-3"></p-tag>
+    </div>
+    <h1 class="text-primary text-center fw-bolder fs-10">Our Crew</h1>
+    <p class="opacity-75 fs-5 color-white text-center">Meet the extraordinary team behind our mission to push the boundaries of innovation</p>
+  </div>
+  <div class="mt-5 container">
+    <h1 class="d-flex align-items-center fw-bold pt-4 color-white"><i class="pi pi-users me-2 fs-1 text-primary"></i>Team Members</h1>
+    <div class="row justify-content-center">
+      @for (member of team; track $index) {
+        <p-card class="col-lg-3 col-sm-6 col-8 mx-lg-1 mx-0 my-2">
+          <ng-template #header>
+              <div class="member-img">
+                <img alt="Card" class="img-fluid cardImg" src="{{member.img}}" />
+              </div>
+          </ng-template>
+          <ng-template #title>
+            <h3 class="fw-bold mb-0">{{member.name}}</h3>
+          </ng-template>
+          <ng-template #subtitle>
+            <p class="text-primary fw-bold fs-5">
+              {{member.jobTitle}}
+            </p>
+          </ng-template>
+      </p-card>
+      }
+    </div>
+  </div>
+</div>

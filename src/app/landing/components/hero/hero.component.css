@@ -1,0 +1,70 @@
+.bg-cover {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('https://i.ibb.co/SwrjsHYR/space-hero.jpg');
+}
+.bg-gradient {
+  background: rgba(0,0,0,0.7);
+  z-index: 1;
+}
+
+.rounded-circle {
+  border-radius: 50%;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.asteroid {
+  opacity: 0.8;
+}
+.animate-drift {
+  animation: drift 10s linear infinite;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(calc(10px * var(--direction)), calc(5px * var(--direction)));
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.text-gradient{
+  background: linear-gradient(to right, #8257D7, #3EBBF9);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.animate-floating{
+  animation: animate-floating 3s linear infinite;
+}
+@keyframes animate-floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+section{
+  height: 100vh;
+}
+.color-white{
+  color: white;
+}

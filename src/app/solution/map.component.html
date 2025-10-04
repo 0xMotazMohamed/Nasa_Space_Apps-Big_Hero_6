@@ -1,0 +1,59 @@
+<div class="map-container">
+  <div class="layers-container">
+    <div class="d-flex flex-column">
+      <div class="header">
+        <p class="m-0 text-light">Current Layer</p>
+      </div>
+      <div class="layer-content d-flex flex-column">
+        <p-selectbutton [(ngModel)]="choosenLayer" (onChange)="changeLayer($event)" [options]="layers" optionLabel="label" optionValue="value" fluid />
+      </div>
+    </div>
+  </div>
+  <div class="slider-container" *ngIf="layersResponse.length > 0">
+    <p-slider
+      #slider
+      [(ngModel)]="selectedPhotoIndex"
+      (onChange)="onSliderChange()"
+      (onSlideEnd)="onSliderChange()"
+      [min]="0"
+      [max]="layersResponse.length - 1"
+      orientation="vertical"
+    >
+    </p-slider>
+    <div class="slider-timestamps">
+      <div class="date-label bg-primary" [style.top.px]="dateLabelPosition">
+        <span>{{ layersResponse[selectedPhotoIndex].date | date:'mediumDate' }} - {{ layersResponse[selectedPhotoIndex].date | date:'shortTime' }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="search-bar">
+    <p-autoComplete
+    [(ngModel)]="searchQuery"
+    [suggestions]="filteredCities"
+    (completeMethod)="filterCities($event)"
+    (onSelect)="onCitySelect($event)"
+    field="name"
+    [minLength]="1"
+    [dropdown]="true"
+    [forceSelection]="false"
+    [virtualScroll]="true"
+    [virtualScrollItemSize]="36"
+    [delay]="150"
+    [appendTo]="'body'"
+    placeholder="Search for a city or county..."
+    inputId="citySearch"
+  >
+    <!-- Optional: custom item to highlight match -->
+    <ng-template let-city pTemplate="item">
+      <div [innerHTML]="highlight(city.name, lastQuery)"></div>
+    </ng-template>
+  </p-autoComplete>
+  </div>
+  <div class="location-button">
+    <button pTooltip="Current Location" pButton type="button" icon="pi pi-map-marker" class="p-button-rounded p-button-text"
+            (click)="goToCurrentLocation()" title="Go to my location"></button>
+  </div>
+  <div class="map" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)">
+    <div leafletDraw [leafletDrawOptions]="drawOptions"></div>
+  </div>
+</div>

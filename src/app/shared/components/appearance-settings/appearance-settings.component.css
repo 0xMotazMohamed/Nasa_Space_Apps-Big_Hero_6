@@ -1,0 +1,9 @@
+.settings-button{
+  position: absolute;
+  z-index: 99999;
+  bottom: 50px;
+  left: 10px;
+}
+.settings-button button{
+  background-color: var(--app-bg);
+}

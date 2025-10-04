@@ -1,0 +1,95 @@
+:host ::ng-deep .myIcon {
+  background-color: var(--p-primary-color);
+  padding: 10px;
+  color: white !important;
+}
+:host {
+  display: block;
+  min-width: 300px;
+  max-width: 100%;
+  background: var(--app-surface-bg);
+  color: var(--app-fg);
+  padding: 1rem;
+}
+.aqi-details {
+  font-family: var(--font-family);
+}
+.myIcon {
+  font-size: 1.5rem;
+  color: var(--p-primary-color);
+}
+.text-primary {
+  color: var(--p-primary-color);
+}
+.text-light {
+  color: var(--app-fg);
+}
+.opacity-50 {
+  opacity: 0.5;
+}
+.color-white {
+  color: #fff;
+}
+.d-flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.align-items-center {
+  align-items: center;
+}
+.justify-content-between {
+  justify-content: space-between;
+}
+.text-center {
+  text-align: center;
+}
+.mb-3 {
+  margin-bottom: 1rem;
+}
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.m-0 {
+  margin: 0;
+}
+.p-4 {
+  padding: 1rem;
+}
+.fw-bolder {
+  font-weight: bolder;
+}
+:host ::ng-deep .p-tabs-nav {
+  background: transparent;
+  border-bottom: 1px solid var(--p-primary-color);
+}
+:host ::ng-deep .p-tab {
+  color: var(--app-fg);
+}
+:host ::ng-deep .p-tab.p-highlight {
+  color: var(--p-primary-color);
+  border-bottom: 2px solid var(--p-primary-color);
+}
+
+/* Updated styles with background and border */
+.general-aqi-value {
+  border: 1px solid var(--app-fg);
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+.detailed-aqi-value {
+  border: 1px solid var(--app-fg);
+  padding: 0.5rem;
+  border-radius: 50% !important;
+}
+.general-aqi-status {
+  padding: 0.5rem;
+  /* border-radius: 50%; */
+}
+
+/* Optional: Add slight opacity to background for better text contrast */
+/* .general-aqi-value, .detailed-aqi-value, .general-aqi-status {
+  background-color: rgba(0, 0, 0, 0.3); // Fallback if dynamic color fails
+} */

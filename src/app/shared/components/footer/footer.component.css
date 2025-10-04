@@ -1,0 +1,8 @@
+footer{
+  background: var(--app-bg);
+  background: linear-gradient(180deg,rgba(3, 4, 12, 1) 0%, rgb(45, 44, 44) 100%);
+}
+.footer {
+  text-align: center;
+  padding: 10px 0;
+}

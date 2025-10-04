@@ -1,0 +1,35 @@
+<section class="position-relative d-flex align-items-center justify-content-center overflow-hidden bg-dark text-white">
+  <!-- Background Image -->
+  <div
+    class="position-absolute top-0 start-0 end-0 bottom-0 bg-cover bg-center">
+    <div class="position-absolute top-0 start-0 end-0 bottom-0 bg-gradient"></div>
+  </div>
+
+  <!-- Animated Stars -->
+  <div class="position-absolute top-0 start-0 end-0 bottom-0" style="z-index: 2;">
+    <div class="position-absolute top-0 start-0 end-0 bottom-0" style="z-index: 2;">
+      <canvas #starCanvas class="w-100 h-100"></canvas>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="position-relative z-2 text-center px-4">
+    <div class="d-flex justify-content-center mb-4">
+      <span class="bi bi-rocket-fill text-primary" style="font-size: 2.5rem;"></span>
+    </div>
+
+    <div class="animate-floating">
+      <img width="200" alt="Aera" src="/AERA-Logo-w.png">
+    </div>
+    <h1 class="display-3 fw-bold mb-4 text-white text-gradient">
+      Nasa Space Apps Solution
+    </h1>
+
+    <p class="lead mb-5 color-white">Innovative visualization and solution for NASA Space Apps Challenge 2025</p>
+
+    <div class="d-flex flex-row gap-3 justify-content-center">
+      <p-button class="d-flex align-items-center shadow" routerLink="/map">Explore Solution<i class="pi pi-arrow-right ms-1"></i></p-button>
+      <p-button styleClass="color-white" severity="info" routerLink="/modules/about" [outlined]="true">Learn More</p-button>
+    </div>
+  </div>
+</section>

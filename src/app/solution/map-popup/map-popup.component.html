@@ -1,0 +1,105 @@
+<p-tabs scrollable [value]="activeTabIndex" *ngIf="series?.length; else noData">
+  <p-tablist>
+    <p-tab *ngFor="let d of dates; let i = index" [value]="i">
+      {{ formatDate(d) }}
+    </p-tab>
+  </p-tablist>
+  <p-tabpanels>
+    <p-tabpanel *ngFor="let r of series; let i = index" [value]="i">
+      <div class="aqi-details">
+        <div class="d-flex align-items-center mb-3">
+          <i class="pi pi-wave-pulse myIcon me-2"></i>
+          <div class="d-flex flex-column">
+            <h4 class="m-0 text-light">Air Quality Details</h4>
+            <p class="m-0 text-light opacity-50">Real-time environment data</p>
+          </div>
+        </div>
+        <div class="general-aqi-details text-center d-flex flex-column">
+          <div class="general-aqi-header d-flex flex-column">
+            <h3 class="text-light m-0 fw-bolder">{{ name }}</h3>
+            <p class="opacity-50 color-gray">Air Quality Index</p>
+          </div>
+          <div class="general-aqi-value" [style.border-color]="getAQIColor(r?.AQI_General?.value)" [style.background-color]="getAQIColor(r?.AQI_General?.value)">
+            <h3 class="m-0 text-light">
+              {{ r?.AQI_General?.value ?? 'N/A' }}
+            </h3>
+            <p class="m-0 text-primary">AQI</p>
+          </div>
+          <div class="general-aqi-status my-2" [style.background-color]="getAQIColor(r?.AQI_General?.value)">
+            <p class="m-0 text-light">
+              {{ r?.AQI_General?.category ?? 'Unknown' }}
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <!-- NO2 -->
+          <div class="col-sm-4 p-4 d-flex flex-column justify-content-between">
+            <div class="aqiItem">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <p class="text-light opacity-50 m-0">NO₂</p>
+                <div class="detailed-aqi-status">
+                  <p class="m-0 text-light">
+                    {{ (r?.no2?.value !== undefined) ? r.no2?.value : '—' }}
+                    <span *ngIf="r?.no2?.AQI">&nbsp;– {{ r.no2?.AQI?.category }}</span>
+                  </p>
+                </div>
+              </div>
+              <div class="detailed-aqi-value" [style.border-color]="getAQIColor(r?.no2?.AQI?.value)" [style.background-color]="getAQIColor(r?.no2?.AQI?.value)">
+                <h3 class="m-0 text-light">
+                  {{ r?.no2?.AQI?.value ?? 'N/A' }}
+                </h3>
+                <p class="m-0 text-primary">AQI</p>
+              </div>
+            </div>
+          </div>
+          <!-- O3 -->
+          <div class="col-sm-4 p-4 d-flex flex-column justify-content-between">
+            <div class="aqiItem">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <p class="text-light opacity-50 m-0">O₃</p>
+                <div class="detailed-aqi-status">
+                  <p class="m-0 text-light">
+                    {{ (r?.o3?.value !== undefined) ? r.o3?.value : '—' }}
+                    <span *ngIf="r?.o3?.AQI">&nbsp;– {{ r.o3?.AQI?.category }}</span>
+                  </p>
+                </div>
+              </div>
+              <div class="detailed-aqi-value" [style.border-color]="getAQIColor(r?.o3?.AQI?.value)" [style.background-color]="getAQIColor(r?.o3?.AQI?.value)">
+                <h3 class="m-0 text-light">
+                  {{ r?.o3?.AQI?.value ?? 'N/A' }}
+                </h3>
+                <p class="m-0 text-primary">AQI</p>
+              </div>
+            </div>
+          </div>
+          <!-- HCHO -->
+          <div class="col-sm-4 p-4 d-flex flex-column justify-content-between">
+            <div class="aqiItem">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <p class="text-light opacity-50 m-0">HCHO</p>
+                <div class="detailed-aqi-status">
+                  <p class="m-0 text-light">
+                    {{ (r?.hcho?.value !== undefined) ? r.hcho?.value : '—' }}
+                    <span *ngIf="r?.hcho?.AQI">&nbsp;– {{ r.hcho?.AQI?.category }}</span>
+                  </p>
+                </div>
+              </div>
+              <div class="detailed-aqi-value" [style.border-color]="getAQIColor(r?.hcho?.AQI?.value)" [style.background-color]="getAQIColor(r?.hcho?.AQI?.value)">
+                <h3 class="m-0 text-light">
+                  {{ r?.hcho?.AQI?.value ?? 'N/A' }}
+                </h3>
+                <p class="m-0 text-primary">AQI</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-tabpanel>
+  </p-tabpanels>
+</p-tabs>
+
+<ng-template #noData>
+  <div class="p-3 text-center">
+    <p class="m-0 text-light opacity-75">No data available for this selection.</p>
+  </div>
+</ng-template>
