@@ -90,6 +90,8 @@ python example.py eval
 
 ## Model Parameters
 
+> **Note**: The default parameters shown below are reference values based on our Kaggle notebook experiments. These are not final optimized values and should be tuned based on your specific dataset and requirements. See the [development notebook](https://www.kaggle.com/code/mo15fr/big-hero-6) for detailed parameter exploration and optimization process.
+
 ### Training Parameters (with defaults from notebook)
 - **epochs**: 80 (default from notebook)
 - **learning_rate**: 7e-6 (default from notebook)
