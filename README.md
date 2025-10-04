@@ -2,6 +2,16 @@
 
 This repository contains a complete pipeline for training and forecasting NO2 concentrations using a U-Net based deep learning model.
 
+## 🔗 Related Resources
+
+### Development Notebook
+The original research and development for this model was conducted in this Kaggle notebook:
+- **[Big Hero 6 - NASA Space Apps Development Notebook](https://www.kaggle.com/code/mo15fr/big-hero-6)**
+
+### Dataset
+The TEMPO NO2 satellite data used for training this model is available on Kaggle:
+- **[TEMPO NO2 Data](https://www.kaggle.com/datasets/moatazmohamed8804/tempo-no2-data)**
+
 ## Files Overview
 
 - **`data.py`**: Data handling and preprocessing utilities
@@ -184,3 +194,23 @@ You can easily customize the pipeline by:
 - Memory usage: ~4-6GB GPU memory with batch_size=4
 - Forecast generation: ~1-2 minutes for 7 days
 - Fine-tuning: ~10-20 minutes for 10 epochs
+
+## 📚 Development & Data Sources
+
+This machine learning pipeline was developed as part of the NASA Space Apps Challenge. The complete development process, including data exploration, model experimentation, and validation, can be found in our Kaggle notebook:
+
+**🔬 Development Notebook**: [Big Hero 6 - NASA Space Apps](https://www.kaggle.com/code/mo15fr/big-hero-6)
+- Contains detailed EDA and data analysis
+- Model architecture experiments and hyperparameter tuning
+- Performance comparisons and validation results
+- Visualization and interpretation of atmospheric data patterns
+
+**📊 Dataset**: [TEMPO NO2 Data](https://www.kaggle.com/datasets/moatazmohamed8804/tempo-no2-data)
+- High-resolution satellite observations from TEMPO instrument
+- NO2 concentration measurements across North America
+- Daily temporal resolution with spatial coverage
+- Preprocessed and ready for machine learning applications
+
+## 🏆 NASA Space Apps Challenge
+
+This project was developed for the NASA Space Apps Challenge, focusing on atmospheric data analysis and forecasting. The goal is to predict air quality patterns using satellite data to support environmental monitoring and public health initiatives.
