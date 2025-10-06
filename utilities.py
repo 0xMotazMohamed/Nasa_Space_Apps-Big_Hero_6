@@ -8,8 +8,8 @@ cities_polygons = json.loads(open("filtered_cities_polygons.json", "r").read())
 
 cities_ids = [cities_ids[idx] for idx in range(len(cities_ids))]
 
-auth = earthaccess.login("netrc")
-print(auth.authenticated)
+#auth = earthaccess.login("netrc")
+#print(auth.authenticated)
 
 no2_pixels = hcho_pixels = 118*310
 o3_pixels = 122*310
