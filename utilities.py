@@ -153,9 +153,9 @@ def get_forecasted_polygon_pixels(no2_hcho_pixels, o3_pixels):
     return no2_values, hcho_values, o3_values, AQI_General_values, no2_AQI_values, hcho_AQI_values, o3_AQI_values
 
 
-def read_forecasted_data(no2='/home/ahmed/Desktop/nasa_space_apps_2025_backend/daily_data/no2_forecast_7days.csv',
-                         o3='/home/ahmed/Desktop/nasa_space_apps_2025_backend/daily_data/o3_forecast_7days.csv',
-                         hcho='/home/ahmed/Desktop/nasa_space_apps_2025_backend/daily_data/hcho_forecast_7days.csv'):
+def read_forecasted_data(no2='daily_data/no2_forecast_7days.csv',
+                         o3='daily_data/o3_forecast_7days.csv',
+                         hcho='daily_data/hcho_forecast_7days.csv'):
     no2 = pd.read_csv(no2)
     o3 = pd.read_csv(o3)
     hcho = pd.read_csv(hcho)
