@@ -1,7 +1,7 @@
 import shapely.geometry as geom
 from shapely.strtree import STRtree
 from shapely.prepared import PreparedGeometry
-import datetime
+from search_city import cities_polygons_geometry
 
 # =========================
 # GRID INITIALIZATION (done once at startup)
@@ -9,6 +9,7 @@ import datetime
 
 # Fixed grid parameters (same for all species)
 min_lon, min_lat, max_lon, max_lat = -167.99, 14.01, -13.01, 72.99
+bbox = geom.box(min_lon, min_lat, max_lon, max_lat)
 
 # Step sizes for each species
 step_no2_lat = 0.02 * 25  # 0.5 degrees
@@ -44,36 +45,42 @@ def initialize_grid(step_lon, step_lat):
     return pixels, pixel_indices, tree, pixel_map
 
 
-# Initialize grids for each species
 no2_grid = initialize_grid(step_no2_lon, step_no2_lat)
 hcho_grid = initialize_grid(step_hcho_lon, step_hcho_lat)
 o3_grid = initialize_grid(step_o3_lon, step_o3_lat)
 
-# Store grids in a dictionary for easy access
 grids = {
     'no2': no2_grid,
     'hcho': hcho_grid,
     'o3': o3_grid
 }
 
-
 # =========================
 # QUERY FUNCTION
 # =========================
 
-def query_pixels(polygon_points, species):
+def query_pixels(geometry, species):
     # Get the grid for the specified species
     pixels, pixel_indices, tree, pixel_map = grids[species]
 
-    poly = geom.Polygon(polygon_points)
-    prep_poly = PreparedGeometry(poly)
+    prep_poly = PreparedGeometry(geometry)
 
-    # STRtree returns indices
-    candidate_idxs = tree.query(poly)
+    candidate_idxs = tree.query(geometry)
 
     hits = []
     for idx in candidate_idxs:
         cand = pixels[idx]  # get actual geometry
         if prep_poly.intersects(cand):
             hits.append(pixel_indices[idx])
-    return hits
+
+    return [int(pixel[1]) * 310 + int(pixel[0]) for pixel in hits]
+
+def get_polygon_pixels(polygon_points, species):
+    poly = geom.Polygon(polygon_points)
+    if bbox.contains(poly):
+        return query_pixels(geom.Polygon(polygon_points), species)
+    else:
+        return []
+
+def get_city_pixels(city_id, species):
+    return query_pixels(cities_polygons_geometry[city_id], species)

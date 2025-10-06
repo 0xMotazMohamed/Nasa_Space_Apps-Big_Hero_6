@@ -90,6 +90,7 @@ def get_pollutant_AQI(pollutant: str, column):
     return column_to_aqi(pollutant, column)
 
 
+
 def get_general_aqi(no2_column, o3_column, hcho_column, *, column_units="molec/cm2", amf=1.0,
                              air_column=DEFAULT_AIR_COLUMN):
     no2_aqi = column_to_aqi("no2", no2_column, column_units=column_units, amf=amf, air_column=air_column)

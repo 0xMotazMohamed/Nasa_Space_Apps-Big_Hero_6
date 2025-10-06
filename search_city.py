@@ -26,12 +26,10 @@ tree = STRtree(cities_polygons_geometry)
 
 
 def get_city_id(lon: float, lat: float):
-    point = Point(lon, lat)
+    point = Point([lon, lat])
     candidates = tree.query(point)
-    try:
-        if candidates:
-            return candidates[0]
-        else:
-            return None
-    except:
+    print(candidates)
+    if candidates.size > 0:
+        return candidates[0]
+    else:
         return None

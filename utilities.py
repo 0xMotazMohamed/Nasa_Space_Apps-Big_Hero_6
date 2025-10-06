@@ -96,14 +96,14 @@ def get_no2_hcho_pixels_means(no2_hcho_pixels):
 
     for day_idx in range(7):
         for pixel_idx in no2_hcho_pixels:
+
             no2_value = session_data["pixels_predicted"]["no2"][day_idx][pixel_idx]
             hcho_value = session_data["pixels_predicted"]["hcho"][day_idx][pixel_idx]
 
             results_no2[day_idx].append(no2_value)
             results_hcho[day_idx].append(hcho_value)
-
-        return ([sum(result_no2) / 7 for result_no2 in results_no2],
-                [sum(result_hcho) / 7 for result_hcho in results_hcho])
+    return ([sum(result_no2) / 7 for result_no2 in results_no2],
+            [sum(result_hcho) / 7 for result_hcho in results_hcho])
 
 
 def get_o3_pixels_means(o3_pixels):
@@ -113,7 +113,7 @@ def get_o3_pixels_means(o3_pixels):
         for pixel_idx in o3_pixels:
             o3_value = session_data["pixels_predicted"]["o3"][day_idx][pixel_idx]
             results_o3[day_idx].append(o3_value)
-        return [sum(result_o3) / 7 for result_o3 in results_o3]
+    return [sum(result_o3) / 7 for result_o3 in results_o3]
 
 
 def get_forecasted_polygon_pixels(no2_hcho_pixels, o3_pixels):
@@ -150,8 +150,7 @@ def get_forecasted_polygon_pixels(no2_hcho_pixels, o3_pixels):
         o3_AQI_values.append(o3_AQI_value)
 
         AQI_General_values.append(AQI_General)
-
-        return no2_values, hcho_values, o3_values, AQI_General_values, no2_AQI_values, hcho_AQI_values, o3_AQI_values
+    return no2_values, hcho_values, o3_values, AQI_General_values, no2_AQI_values, hcho_AQI_values, o3_AQI_values
 
 
 def read_forecasted_data(no2='/home/ahmed/Desktop/nasa_space_apps_2025_backend/daily_data/no2_forecast_7days.csv',

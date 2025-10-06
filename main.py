@@ -2,26 +2,31 @@ from utilities import (earthaccess, session_data, doi_data,
                        get_no2_pixel_idx, get_hcho_pixel_idx, get_o3_pixel_idx,
                        cities_ids, cities_polygons,
                        get_forecasted_pixel, get_forecasted_polygon_pixels, read_forecasted_data)
-import pandas as pd
-from fastapi import Body
 
 
-from search_polygon import query_pixels
+from get_layers_photos import get_urls
+from fastapi.middleware.cors import CORSMiddleware
+
+
+
+from search_polygon import get_city_pixels, get_polygon_pixels
 from search_city import get_city_id
 
-from AQI import get_pollutant_AQI, get_general_aqi
 
 from fastapi import FastAPI, Query, HTTPException
-from pydantic import BaseModel
-from typing import Literal, List, Union, Optional
-from enum import Enum
-# from apscheduler.schedulers.asyncio import AsyncIOScheduler
-# from apscheduler.triggers.cron import CronTrigger
-# from apscheduler.triggers.interval import IntervalTrigger
+from typing import Literal
+
 import json
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or restrict to your frontend domain(s)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 
+)
 
 # Endpoint for getting points with lon and lat
 @app.get("/points")
@@ -42,16 +47,17 @@ def get_points(
 
     city = get_city_id(lon, lat)
     if city:
-        coordinates = cities_polygons[int(city)]["coordinates"]
-        name = cities_ids[int(city)]["name"]
-        no2_hcho_pixels = query_pixels(coordinates, "no2")
-        o3_pixels = query_pixels(coordinates, "o3")
+        city_id = int(city)
+        name = cities_ids[city_id]["name"]
+        no2_hcho_pixels = get_city_pixels(city_id, "no2")
+        o3_pixels = get_city_pixels(city_id, "o3")
+
         no2_values, hcho_values, o3_values, AQI_General_values, no2_AQI_values, hcho_AQI_values, o3_AQI_values =\
             get_forecasted_polygon_pixels(no2_hcho_pixels, o3_pixels)
 
         city_result = {
             "name": name,
-            "polygon_arr": cities_polygons[int(city)],
+            "polygon_arr": cities_polygons[city_id],
             "values": [
                 {
                     "date": forecasted_dates[day],
@@ -84,12 +90,20 @@ def get_points(
 
 
 # Endpoint for getting city with city_name as query parameter
-@app.get("/get_polygon")
+@app.get("/get_city")
 def get_city(city_id: str = Query(..., description="city_id")):
-    coordinates = cities_polygons[int(city_id)]["coordinates"]
+
+    try:
+        city_id_int = int(city_id)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="city_id must be an integer")
+
+    if city_id_int > 5485 or city_id_int < 0:
+        raise HTTPException(status_code=400, detail="city_id out of valid range (0–5485)")
+
     name = cities_ids[int(city_id)]["name"]
-    no2_hcho_pixels = query_pixels(coordinates, "no2")
-    o3_pixels = query_pixels(coordinates, "o3")
+    no2_hcho_pixels = get_city_pixels(city_id_int, "no2")
+    o3_pixels = get_city_pixels(city_id_int, "o3")
     no2_values, hcho_values, o3_values, AQI_General_values, no2_AQI_values, hcho_AQI_values, o3_AQI_values = \
         get_forecasted_polygon_pixels(no2_hcho_pixels, o3_pixels)
 
@@ -98,7 +112,7 @@ def get_city(city_id: str = Query(..., description="city_id")):
     city_result = {
         "city": {
             "name": name,
-            "polygon_arr": cities_polygons[int(city_id)],
+            "polygon_arr": cities_polygons[city_id_int],
             "values": [
                 {
                     "date": forecasted_dates[day],
@@ -123,25 +137,37 @@ def get_city(city_id: str = Query(..., description="city_id")):
 @app.get("/layer/{layer_type}")
 def get_layer(layer_type: Literal["no2", "o3", "hcho"]):
     # Define available photo links
-    layers_ = session_data[f"{layer_type}_layers"]
+    layers_ = get_urls(layer_type)
 
     # Return the photo link for the requested layer_type
     if layer_type in doi_data:
         if layers_:
-            return {"status": True, "photos": layers_}
+            return {"layers": layers_}
         else:
-            return {"status": False}
+            return {"layers": []}
     else:
         raise HTTPException(status_code=422, detail=f"Invalid layer_type: {layer_type}")
 
 
 # Endpoint for getting polygon with coordinates as a JSON-string query parameter
-@app.post("/get_polygon")
-async def get_polygon(
-    coordinates: List[List[float | int]] = Body(..., description="List of coordinates")
-):
-    no2_hcho_pixels = query_pixels(coordinates, "no2")
-    o3_pixels = query_pixels(coordinates, "o3")
+@app.get("/get_polygon")
+async def get_polygon(coordinates: str = Query(..., description="JSON array of coordinates")):
+    try:
+        # Parse the JSON string into Python list
+        polygon = json.loads(coordinates)
+
+        # Validate
+        if not isinstance(polygon, list) or not all(isinstance(p, list) and len(p) == 2 for p in polygon):
+            raise ValueError("Invalid polygon format")
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Invalid input: {str(e)}")
+
+    no2_hcho_pixels = get_polygon_pixels(polygon, "no2")
+    o3_pixels = get_polygon_pixels(polygon, "o3")
+
+    if not no2_hcho_pixels or not o3_pixels:
+        raise HTTPException(status_code=400, detail=f"Invalid polygon shape out of bbox")
+
     no2_values, hcho_values, o3_values, AQI_General_values, no2_AQI_values, hcho_AQI_values, o3_AQI_values = \
         get_forecasted_polygon_pixels(no2_hcho_pixels, o3_pixels)
 
@@ -173,10 +199,7 @@ async def get_polygon(
 @app.on_event("startup")
 async def startup_event():
     read_forecasted_data()
-    print(len(session_data["pixels_predicted"]["no2"][0]))
-    print(len(session_data["pixels_predicted"]["o3"][0]))
 
-    print(len(session_data["pixels_predicted"]["hcho"][0]))
 
     # print(session_data["pixels_predicted"])
 
