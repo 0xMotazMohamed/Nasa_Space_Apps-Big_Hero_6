@@ -5,7 +5,6 @@ from utilities import (earthaccess, session_data, doi_data,
 
 
 from get_layers_photos import get_urls
-from fastapi.middleware.cors import CORSMiddleware
 
 
 
@@ -19,14 +18,6 @@ from typing import Literal
 import json
 
 app = FastAPI()
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # or restrict to your frontend domain(s)
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-
-)
 
 # Endpoint for getting points with lon and lat
 @app.get("/points")
@@ -195,13 +186,11 @@ async def get_polygon(coordinates: str = Query(..., description="JSON array of c
 
     return polygon_result
 
-# Start the scheduler when the FastAPI app starts
 @app.on_event("startup")
 async def startup_event():
     read_forecasted_data()
 
 
-    # print(session_data["pixels_predicted"])
 
 # Stop the scheduler when the FastAPI app shuts down
 # @app.on_event("shutdown")
